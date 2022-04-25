@@ -1,0 +1,38 @@
+/* User details */
+
+.user-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin: 5vh 0 0 5vh;
+}
+
+.user-details-avatar {
+  border-radius: 100%;
+  width: 250px;
+  height: 250px;
+}
+
+.user-details-bio {
+  margin-top: 20px;
+}
+.user-details-items {
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.user-details-items-img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 576px) {
+  .user-details {
+    flex-direction: column;
+    margin: 0;
+  }
+}
