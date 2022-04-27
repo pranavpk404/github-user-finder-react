@@ -24,6 +24,7 @@ function UserDetails({ userDetails }) {
             <img
               className="user-details-items-img"
               src="https://img.icons8.com/ios-filled/32/ffffff/marker.png"
+              alt="location:"
             />
           </span>
           <span>{userDetails.location}</span>
@@ -33,6 +34,7 @@ function UserDetails({ userDetails }) {
             <img
               className="user-details-items-img"
               src="https://img.icons8.com/ios-glyphs/32/ffffff/github.png"
+              alt="github account:"
             />
           </span>
           <a
@@ -50,6 +52,7 @@ function UserDetails({ userDetails }) {
             <img
               className="user-details-items-img"
               src="https://img.icons8.com/ios/32/ffffff/domain.png"
+              alt="personal website:"
             />
           </span>
           <a
@@ -66,6 +69,7 @@ function UserDetails({ userDetails }) {
             <img
               className="user-details-items-img"
               src="https://img.icons8.com/ios-filled/32/ffffff/twitter.png"
+              alt="twitter:"
             />
           </span>
           <a

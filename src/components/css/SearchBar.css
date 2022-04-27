@@ -21,6 +21,10 @@
   width: 90%;
   border-radius: 15px;
 }
+#searchBtn {
+  width: 28px;
+  height: 28px;
+}
 
 #searchBar:focus {
   outline: 0;
