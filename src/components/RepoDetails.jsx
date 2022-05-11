@@ -1,13 +1,10 @@
-import React from "react";
-import "./css/RepoDetails.css";
-
 function RepoDetails({ userRepo }) {
   const iconUrl =
     "https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/main/icons/";
 
   const truncateString = (str) => {
     str = str || "";
-    if (str.length > 90) {
+    if (str.length > 10) {
       return str.substring(0, 90) + "...";
     }
   };
@@ -25,13 +22,17 @@ function RepoDetails({ userRepo }) {
     }
   };
   return (
-    <div className="repo-details">
-      <div className="repo-details-list">
+    <div className="">
+      <h1 className="text-center text-2xl">Repositories</h1>
+      <div className="flex flex-row flex-wrap justify-center">
         {userRepo.map((repo) => (
-          <div className="repo-details-card" key={repo.id}>
+          <span
+            className="flex bg-gray-700  rounded-xl p-2 m-5 space-y-5 text-gray-200 flex-col w-56 "
+            key={repo.id}
+          >
             <h4 className="repo-details-card-item">{repo.name}</h4>
             <img
-              className="repo-details-card-item repo-details-card-item-img"
+              className="w-10 h-10"
               src={`${iconUrl}${changeToLowerCase(
                 checkLanguage(repo.language)
               )}.svg`}
@@ -41,14 +42,12 @@ function RepoDetails({ userRepo }) {
               rel="noopener noreferrer"
               target="_BLANK"
               href={repo.html_url}
-              className="repo-details-card-item htmlUrl"
+              className="text-blue-500"
             >
               Link To Repository
             </a>
-            <h5 className="repo-details-card-item">
-              {truncateString(repo.description)}
-            </h5>
-          </div>
+            <h5 className="text-sm">{truncateString(repo.description)}</h5>
+          </span>
         ))}
       </div>
     </div>

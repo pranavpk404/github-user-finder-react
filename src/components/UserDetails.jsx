@@ -1,83 +1,46 @@
-import React from "react";
-import "./css/UserDetails.css";
-
 function UserDetails({ userDetails }) {
+  const {
+    blog,
+    bio,
+    avatar_url,
+    html_url,
+    location,
+    login,
+    name,
+    twitter_username,
+  } = userDetails;
   return (
-    <div className="user-details">
-      <div className="user-avatar-bio">
-        <img
-          src={userDetails.avatar_url}
-          className="user-details-avatar"
-          alt="avatar"
-        />
-        <div className="user-details-bio">
-          <center>{userDetails.bio}</center>
-        </div>
-      </div>
-
-      <div className="user-details-info">
-        <span className="user-details-info-name">
-          <h2>{userDetails.name}</h2>
-        </span>
-        <div className="user-details-items">
-          <span>
-            <img
-              className="user-details-items-img"
-              src="https://img.icons8.com/ios-filled/32/ffffff/marker.png"
-              alt="location:"
-            />
+    <div className="m-5 flex flex-wrap justify-around lg:justify-start">
+      <img
+        alt="ecommerce"
+        className="w-64 items-center h-64 object-cover object-center rounded-full"
+        src={avatar_url}
+      />
+      <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+        <a
+          href={html_url}
+          target="_BLANK"
+          className="text-sm title-font text-gray-300 tracking-widest"
+        >
+          @{login}
+        </a>
+        <h1 className="text-gray-400 text-3xl title-font font-medium mb-1">
+          {name}
+        </h1>
+        <p className="leading-relaxed mb-3">{bio}</p>
+        <div className="flex flex-col space-y-2">
+          <span className="mb-2 underline flex flex-row">
+            <img src="https://img.icons8.com/ios/24/000000/marker--v1.png" />
+            <p>{location}</p>
           </span>
-          <span>{userDetails.location}</span>
-        </div>
-        <div className="user-details-items">
-          <span>
-            <img
-              className="user-details-items-img"
-              src="https://img.icons8.com/ios-glyphs/32/ffffff/github.png"
-              alt="github account:"
-            />
+          <span className="mb-2 underline flex flex-row">
+            <img src="https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/24/000000/external-internet-culture-and-communities-smashingstocks-hand-drawn-black-smashing-stocks.png" />
+            <p>{blog}</p>
           </span>
-          <a
-            rel="noopener noreferrer"
-            target="_BLANK"
-            className="htmlUrl"
-            href={userDetails.html_url}
-          >
-            @{userDetails.login}
-          </a>
-        </div>
-
-        <div className="user-details-items">
-          <span>
-            <img
-              className="user-details-items-img"
-              src="https://img.icons8.com/ios/32/ffffff/domain.png"
-              alt="personal website:"
-            />
+          <span className="mb-2 underline flex flex-row">
+            <img src="https://img.icons8.com/ios/24/000000/twitter--v2.png" />
+            <p>@{twitter_username}</p>
           </span>
-          <a
-            rel="noopener noreferrer"
-            target="_BLANK"
-            className="htmlUrl"
-            href={userDetails.blog}
-          >
-            {userDetails.blog}
-          </a>
-        </div>
-        <div className="user-details-items">
-          <span>
-            <img
-              className="user-details-items-img"
-              src="https://img.icons8.com/ios-filled/32/ffffff/twitter.png"
-              alt="twitter:"
-            />
-          </span>
-          <a
-            href={`https://twitter.com/${userDetails.twitter_username}`}
-            className="htmlUrl"
-          >
-            @{userDetails.twitter_username}
-          </a>
         </div>
       </div>
     </div>

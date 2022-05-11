@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import SearchBar from "./components/SearchBar";
 import UserDetails from "./components/UserDetails";
 import RepoDetails from "./components/RepoDetails";
@@ -33,12 +32,17 @@ function App() {
     }
   }, [userName]);
 
+  useEffect(() => {
+    setSearched(true);
+    setUserName("pranavpk404");
+  }, []);
+
   return (
-    <>
+    <div className="font-Poppins bg-gray-900 text-white">
       <SearchBar setUserName={setUserName} setSearched={setSearched} />
       <UserDetails userDetails={userDetails} />
       <RepoDetails userRepo={userRepo} />
-    </>
+    </div>
   );
 }
 
