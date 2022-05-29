@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import RepoDetails from "./components/RepoDetails";
-import UserDetails from "./components/UserDetailsfsa.js";
+import UserDetails from "./components/UserDetails";
 
 function App() {
   const [searched, setSearched] = useState(false);
