@@ -1,48 +1,72 @@
 import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
-import UserDetails from "./components/UserDetails";
 import RepoDetails from "./components/RepoDetails";
+import UserDetails from "./components/UserDetailsfsa.js";
 
 function App() {
   const [searched, setSearched] = useState(false);
   const [userName, setUserName] = useState("");
-  const [userDetails, setUserDetails] = useState([]);
+  const [userDetails, setUserDetails] = useState({
+    avatar_url: "",
+    blog: "",
+    bio: "",
+    html_url: "",
+    location: "",
+    login: "",
+    name: "",
+    twitter_username: "",
+  });
   const [userRepo, setUserRepo] = useState([]);
 
   useEffect(() => {
     const getUserDetails = async () => {
       let url = `https://api.github.com/users/${userName}`;
       let data = await fetch(url);
-      let resp = await data.json();
-      setUserDetails(resp);
+
+      let user = await data.json();
+      if (user.message === "Not Found") {
+        alert("User not found");
+        setUserDetails({
+          avatar_url: "",
+          blog: "",
+          bio: "",
+          html_url: "",
+          location: "",
+          login: "",
+          name: "",
+          twitter_username: "",
+        });
+      } else {
+        setUserDetails(user);
+      }
     };
     const getUserRepo = async () => {
       let url = `https://api.github.com/users/${userName}/repos`;
       let data = await fetch(url);
+
       let resp = await data.json();
-      setUserRepo(resp);
+      if (resp.message === "Not Found") {
+        setUserRepo([]);
+      } else {
+        setUserRepo(resp);
+      }
     };
 
     if (searched) {
       getUserDetails();
       getUserRepo();
     } else {
-      setUserDetails([]);
-      setUserRepo([]);
+      setSearched(true);
+      setUserName("pranavpk404");
     }
   }, [userName]);
 
-  useEffect(() => {
-    setSearched(true);
-    setUserName("pranavpk404");
-  }, []);
-
   return (
-    <div className="font-Poppins bg-gray-900 text-white">
+    <main className="font-Poppins bg-gray-900 text-white">
       <SearchBar setUserName={setUserName} setSearched={setSearched} />
       <UserDetails userDetails={userDetails} />
       <RepoDetails userRepo={userRepo} />
-    </div>
+    </main>
   );
 }
 

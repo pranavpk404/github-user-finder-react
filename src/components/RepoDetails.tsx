@@ -1,18 +1,21 @@
-function RepoDetails({ userRepo }) {
+import { UserRepoProps } from "../types";
+
+const RepoDetails = ({ userRepo }: UserRepoProps) => {
+  console.log(userRepo);
   const iconUrl =
     "https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/main/icons/";
 
-  const truncateString = (str) => {
+  const truncateString = (str: string) => {
     str = str || "";
     if (str.length > 10) {
       return str.substring(0, 90) + "...";
     }
   };
-  const changeToLowerCase = (str) => {
+  const changeToLowerCase = (str: string) => {
     str = str || "";
     return str.toLowerCase();
   };
-  const checkLanguage = (language) => {
+  const checkLanguage = (language: string) => {
     if (language === "C++") {
       return "cpp";
     } else if (language === "C#") {
@@ -52,6 +55,6 @@ function RepoDetails({ userRepo }) {
       </div>
     </div>
   );
-}
+};
 
 export default RepoDetails;

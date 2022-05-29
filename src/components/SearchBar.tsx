@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { SearchBarProps } from "../types";
 
-function SearchBar({ setUserName, setSearched }) {
+const SearchBar = ({ setUserName, setSearched }: SearchBarProps) => {
   const [text, setText] = useState("");
   const search = () => {
     setSearched(true);
@@ -28,6 +29,6 @@ function SearchBar({ setUserName, setSearched }) {
       )}
     </div>
   );
-}
+};
 
 export default SearchBar;
