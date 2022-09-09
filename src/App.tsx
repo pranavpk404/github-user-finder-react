@@ -3,7 +3,7 @@ import SearchBar from "./components/SearchBar";
 import RepoDetails from "./components/RepoDetails";
 import UserDetails from "./components/UserDetails";
 
-function App() {
+const App = () => {
   const [searched, setSearched] = useState(false);
   const [userName, setUserName] = useState("");
   const [userDetails, setUserDetails] = useState({
@@ -21,53 +21,62 @@ function App() {
   useEffect(() => {
     const getUserDetails = async () => {
       let url = `https://api.github.com/users/${userName}`;
-      let data = await fetch(url);
-
-      let user = await data.json();
-      if (user.message === "Not Found") {
-        alert("User not found");
-        setUserDetails({
-          avatar_url: "",
-          blog: "",
-          bio: "",
-          html_url: "",
-          location: "",
-          login: "",
-          name: "",
-          twitter_username: "",
-        });
-      } else {
-        setUserDetails(user);
+      try {
+        let data = await fetch(url);
+        let user = await data.json();
+        if (user.message === "Not Found") {
+          alert("User not found");
+          setUserDetails({
+            avatar_url: "",
+            blog: "",
+            bio: "",
+            html_url: "",
+            location: "",
+            login: "",
+            name: "",
+            twitter_username: "",
+          });
+        } else {
+          setUserDetails(user);
+        }
+      } catch (error) {
+        alert("server error");
       }
     };
     const getUserRepo = async () => {
-      let url = `https://api.github.com/users/${userName}/repos`;
-      let data = await fetch(url);
+      try {
+        let url = `https://api.github.com/users/${userName}/repos`;
+        let data = await fetch(url);
 
-      let resp = await data.json();
-      if (resp.message === "Not Found") {
-        setUserRepo([]);
-      } else {
-        setUserRepo(resp);
+        let resp = await data.json();
+        if (resp.message === "Not Found") {
+          setUserRepo([]);
+        } else {
+          setUserRepo(resp);
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
-
-    if (searched) {
+    if (searched ) {
       getUserDetails();
       getUserRepo();
-    } else {
-      setSearched(true);
-      setUserName("pranavpk404");
     }
   }, [userName]);
 
   return (
-    <main className="font-Poppins bg-gray-900 text-white">
+    <main className="font-Poppins first-letter:placeholder::bg-gray-900 text-white">
       <SearchBar setUserName={setUserName} setSearched={setSearched} />
-      <UserDetails userDetails={userDetails} />
-      <RepoDetails userRepo={userRepo} />
+      {searched ? (
+        <>
+          <UserDetails userDetails={userDetails} />
+          <RepoDetails userRepo={userRepo} />
+        </>
+      ) : (
+        <h1 className="text-center text-4xl my-52">Search for users</h1>
+      )}
     </main>
   );
-}
+};
 
 export default App;
